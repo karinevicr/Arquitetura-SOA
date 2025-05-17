@@ -2,7 +2,6 @@
 
 A seguir, estão listados 5 requisitos não funcionais do sistema de reservas de voos, cada um identificado com um código RNF (Requisito Não Funcional) sequencial.
 
-
 ## RNF01:
 
 * **Nome:** Resposta Rápida na Pesquisa de Voos
@@ -12,7 +11,6 @@ A seguir, estão listados 5 requisitos não funcionais do sistema de reservas de
 * **Justificativa:** Uma resposta rápida na pesquisa de voos permite que os usuários naveguem pelas opções disponíveis de forma fluida e sem frustrações. Isso melhora a experiência geral do usuário, tornando o processo de reserva mais ágil e eficiente. Usuários são mais propensos a continuar usando o sistema se as informações que procuram forem apresentadas rapidamente.
 * **Métricas de sucesso:** 
     - Tempo Máximo de Resposta: 99% das requisições de pesquisa de voos não devem exceder 3 segundos sob carga normal
-
 
 ## RNF02:
 
@@ -43,7 +41,6 @@ A seguir, estão listados 5 requisitos não funcionais do sistema de reservas de
 * **Justificativa:** A escalabilidade garante que a experiência do usuário permaneça consistente mesmo durante os períodos de pico de acesso. Os usuários não enfrentarão lentidão, timeouts ou falhas no sistema quando muitos outros usuários estiverem acessando-o simultaneamente, garantindo uma experiência de reserva confiável em qualquer situação.
 * **Métricas de sucesso:** 
     - - Tempo Máximo de Resposta em Pico: Em 90% das pesquisas durante períodos de pico, o tempo não deve exceder 5 segundos.
-
 
 ## RNF05: 
 

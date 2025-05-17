@@ -8,22 +8,22 @@
 
 <div align="center">
 <sub> Arquitetura SOA </sub>
-<img src="SOA.png" alt='Arquitura SOA' width="100%">
+<img src="SOA.png" alt='Arquitetura SOA' width="100%">
 <sup>Fonte: Material produzido pela autora</sup>
 </div>
 
-### Blocos da Arquitetura
+### Camadas da Arquitetura
 
 &emsp; A arquitetura SOA do sistema de reservas de voos é composta pelos seguintes blocos principais, organizados em camadas para melhor separação de responsabilidades:
 
-* **Camada de Apresentação (Frontend):** Responsável pela interação do usuário e administrador com relação ao sistema. Contém:
+* **Camada de Apresentação (Frontend):** Responsável pela interação do usuário e administrador no sistema. Contém:
     * **Interface do Usuário:** Permite aos clientes pesquisar voos, fazer reservas e gerenciar seus perfis.
     * **Interface do Administrador:** Permite aos funcionários da companhia aérea gerenciar voos, assentos e informações de clientes.
 
 * **Serviços Internos:** Contêm a lógica de negócios principal do sistema, exposta como serviços independentes e reutilizáveis:
     * **Serviço de Autenticação e Autorização:** Responsável por autenticar e autorizar usuários (clientes e administradores) para acessar o sistema e seus recursos.
     * **Serviço de Pesquisa de Voos:** Permite aos usuários pesquisar voos com base em critérios como origem, destino, data e preferências.
-    * **Serviço de Reservas:** Orquestra o processo de reserva de voos, interagindo com outros serviços para verificar disponibilidade, processar pagamentos e gerar confirmações.
+    * **Serviço de Reservas:** Responsável pelo processo de reserva de voos, interagindo com outros serviços para verificar disponibilidade e infomações.
     * **Serviço de Gerenciamento de Voos:** Permite a criação, leitura, atualização e exclusão de informações sobre voos (horários, rotas, aeronaves).
     * **Serviço de Notificações:** Responsável por enviar notificações aos usuários, como confirmações de reserva e alertas.
     * **Serviço de Pagamentos:** Facilita o processamento de pagamentos para as reservas.
@@ -40,14 +40,14 @@
 
 * **API de Geolocalização:** Utilizada para detectar automaticamente a localização do usuário, facilitando a pesquisa de voos a partir de sua cidade.
 * **API de Processamento de Pagamentos:** Integração com um gateway de pagamento para processar transações financeiras de forma segura durante o processo de reserva.
-* **API de Companhias Aéreas (Opcional):** Pode ser integrada para obter informações de voos em tempo real, detalhes de voos de outras companhias aéreas (para um possível cenário de voos de conexão) ou informações adicionais sobre aeroportos e voos.
+* **API de Companhias Aéreas:** Pode ser integrada para obter informações de voos em tempo real, detalhes de voos de outras companhias aéreas (para um possível cenário de voos de conexão) ou informações adicionais sobre aeroportos e voos.
 * **API de Notificação (Serviço de Email):** Utilizada pelo Serviço de Notificações para enviar e-mails de confirmação de reserva e outras comunicações aos usuários.
 
 &emsp; A integração com esses serviços externos permite que o sistema ofereça funcionalidades avançadas sem a necessidade de desenvolver toda a lógica internamente, aproveitando a expertise de provedores especializados.
 
-### Justificação dos Elementos e Ligações
+### Elementos e Ligações
 
-&emsp; A arquitetura é estruturada em camadas para promover a manutenibilidade.
+&emsp; A arquitetura é estruturada em camadas para promover manutenibilidade, escalabilidade e desacoplamento entre os componentes.
 
 * **Camada de Apresentação:** Separa a interface do usuário da lógica de negócios, permitindo flexibilidade para diferentes tipos de clientes (web, mobile) e interfaces de administração. A comunicação bidirecional com os serviços internos permite que as interfaces enviem requisições e recebam dados para exibição.
 
@@ -66,20 +66,22 @@ Para acessar os RNFs do projeto é necessario acessar o arquivo [RNF.md](RNF.md)
 ### 📌 Como Acessar a Simulação
 
 ### Pré-requisitos
-✔️ Ter a extensão **Live Server** instalada no VSCode  
-*(Caso não tenha, instale através do Marketplace de Extensões)*
+
+### Pré-requisitos  
+
+- [ ] **Visual Studio Code (VSCode)** instalado  
+- [ ] Extensão **Live Server** (disponível no Marketplace)  
 
 ### Passo a Passo
 
-1. **Localize** o arquivo `index.html`
-2. **Clique com o botão direito** do mouse sobre o arquivo
-3. **Selecione** a opção:  
-   `"Open with Live Server"`
+1. **Abra** o projeto no VSCode.  
+2. **Navegue** até o arquivo `index.html`.  
+3. **Clique com o botão direito** e selecione:  
+   `Open with Live Server`.  
 
 ### Visualização
 - A simulação será aberta automaticamente no seu navegador padrão
 - O endereço será: `http://127.0.0.1:5500/index.html`
-
 
 ## Autoria e Desenvolvimento
 
