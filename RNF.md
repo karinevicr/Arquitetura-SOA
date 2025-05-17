@@ -1,6 +1,6 @@
-# Requisitos Não Funcionais e User Stories (Identificados)
+# Requisitos Não Funcionais e User Stories
 
-A seguir, estão listados 5 requisitos não funcionais do sistema de reservas de voos, cada um identificado com um código RNF (Requisito Não Funcional) sequencial.
+A seguir, estão listados 5 requisitos não funcionais do sistema de reservas de voos.
 
 ## RNF01:
 
