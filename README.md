@@ -12,38 +12,50 @@
 <sup>Fonte: Material produzido pela autora</sup>
 </div>
 
-&emsp; **Observação Importante sobre os Bancos de Dados:** No diagrama, o Banco de Dados de Voos e Reservas é uma representação queparece duas vezes por uma questão estética para facilitar a visualização do fluxo de dados de diferentes serviços, porém, nas duas vezes em ele é representado, ele se referente a um unico banco de Banco de Dados de Voos e Reservas. 
+### Blocos da Arquitetura
 
-## Descrição dos Serviços e Componentes
+&emsp; A arquitetura SOA do sistema de reservas de voos é composta pelos seguintes blocos principais, organizados em camadas para melhor separação de responsabilidades:
 
-* **Serviço de Autenticação:** Gerencia a autenticação e o registro de clientes e funcionários. Interage com o **Banco de Dados de Usuários** para verificar credenciais e armazenar informações de registro. A interação com as interfaces é bidirecional para receber as credenciais e informar o status da autenticação.
+* **Camada de Apresentação (Frontend):** Responsável pela interação do usuário e administrador com relação ao sistema. Contém:
+    * **Interface do Usuário:** Permite aos clientes pesquisar voos, fazer reservas e gerenciar seus perfis.
+    * **Interface do Administrador:** Permite aos funcionários da companhia aérea gerenciar voos, assentos e informações de clientes.
 
-* **Interface do Cliente:** Representa a interface com a qual os clientes interagem (aplicação web ou mobile). Permite pesquisar voos, visualizar resultados, selecionar voos, fornecer informações pessoais e de pagamento, e receber confirmações de reserva. A interação é bidirecional pois a interface envia requisições aos serviços e recebe respostas.
+* **Serviços Internos:** Contêm a lógica de negócios principal do sistema, exposta como serviços independentes e reutilizáveis:
+    * **Serviço de Autenticação e Autorização:** Responsável por autenticar e autorizar usuários (clientes e administradores) para acessar o sistema e seus recursos.
+    * **Serviço de Pesquisa de Voos:** Permite aos usuários pesquisar voos com base em critérios como origem, destino, data e preferências.
+    * **Serviço de Reservas:** Orquestra o processo de reserva de voos, interagindo com outros serviços para verificar disponibilidade, processar pagamentos e gerar confirmações.
+    * **Serviço de Gerenciamento de Voos:** Permite a criação, leitura, atualização e exclusão de informações sobre voos (horários, rotas, aeronaves).
+    * **Serviço de Notificações:** Responsável por enviar notificações aos usuários, como confirmações de reserva e alertas.
+    * **Serviço de Pagamentos:** Facilita o processamento de pagamentos para as reservas.
 
-* **Serviço de busca de Voos:** Responsável por receber os critérios de pesquisa do cliente, consultar o **Banco de Dados de Voos e Reservas** para encontrar voos disponíveis e retornar os resultados para a Interface do Cliente.
+* **Camada de Dados:** Responsável pela persistência dos dados do sistema:
+    * **Banco de Dados de Voos e Reserva:** Armazena informações sobre voos, horários, preços, disponibilidade de assentos e detalhes das reservas.
+    * **Banco de Dados de Usuários:** Armazena informações sobre os usuários do sistema (clientes e administradores), incluindo dados de perfil e credenciais de autenticação.
 
-* **Serviço de Reserva de Voos:** Orquestra o processo de reserva. Recebe a seleção de voos do cliente, verifica a disponibilidade no **Banco de Dados de Voos e Reservas**, interage com o **Serviço de Pagamentos** para processar o pagamento e, em seguida, atualiza o status da reserva no **Banco de Dados de Voos e Reservas**.
+* **Serviços Externos:** APIs de terceiros integradas para estender a funcionalidade do sistema e melhorar a experiência do usuário.
 
-* **Serviço de Notificações:** Responsável por enviar notificações aos clientes (por e-mail e pela interface), com confirmações de reserva, lembretes e atualizações de voo. Ele lê informações do **Banco de Dados de Voos e Reservas** para obter detalhes relevantes e informações.
+### Integração com Serviços Externos 
 
-* **Serviço de Pagamentos:** Usado para processar as transações de pagamento dos clientes. Após o processamento, atualiza o status do pagamento no serviço de reserva de voos que muda o estado no **Banco de Dados de Voos e Reservas**.
+&emsp; O sistema de reservas de voos se integra com os seguintes serviços externos para otimizar funcionalidades e reduzir a necessidade de desenvolvimento interno:
 
-* **Interface do Administrador:** Interface utilizada pelos funcionários da companhia aérea para gerenciar o sistema, incluindo voos, disponibilidade, preços e informações de clientes. A interação é bidirecional para enviar comandos e receber informações do **Serviço de Gestão de Sistemas**.
+* **API de Geolocalização:** Utilizada para detectar automaticamente a localização do usuário, facilitando a pesquisa de voos a partir de sua cidade.
+* **API de Processamento de Pagamentos:** Integração com um gateway de pagamento para processar transações financeiras de forma segura durante o processo de reserva.
+* **API de Companhias Aéreas (Opcional):** Pode ser integrada para obter informações de voos em tempo real, detalhes de voos de outras companhias aéreas (para um possível cenário de voos de conexão) ou informações adicionais sobre aeroportos e voos.
+* **API de Notificação (Serviço de Email):** Utilizada pelo Serviço de Notificações para enviar e-mails de confirmação de reserva e outras comunicações aos usuários.
 
-* **Serviço de Gestão de Sistemas:** Fornece as funcionalidades para a administração do sistema. Interage com o **Banco de Dados de Voos e Reservas** para gerenciar voos e reservas, e com o **Banco de Dados de Usuários** para gerenciar informações de clientes e funcionários. 
+&emsp; A integração com esses serviços externos permite que o sistema ofereça funcionalidades avançadas sem a necessidade de desenvolver toda a lógica internamente, aproveitando a expertise de provedores especializados.
 
-* **Barramento de Serviços (Implícito):** Embora não explicitamente desenhado como um componente único, representa o mecanismo de comunicação entre os serviços. As setas indicando a comunicação entre os serviços sugerem a utilização de um barramento de serviços ou uma arquitetura similar que facilita a troca de mensagens e a integração.
+### Justificação dos Elementos e Ligações
 
-* **Banco de Dados de Voos e Reservas:** Armazena informações sobre os voos disponíveis, horários, preços, disponibilidade de assentos e os detalhes de todas as reservas efetuadas.
+&emsp; A arquitetura é estruturada em camadas para promover a manutenibilidade.
 
-* **Banco de Dados de Usuários:** Armazena informações sobre os clientes e os funcionários da companhia aérea (credenciais, informações de contato, etc.).
+* **Camada de Apresentação:** Separa a interface do usuário da lógica de negócios, permitindo flexibilidade para diferentes tipos de clientes (web, mobile) e interfaces de administração. A comunicação bidirecional com os serviços internos permite que as interfaces enviem requisições e recebam dados para exibição.
 
-## Significado das Setas
+* **Serviços Internos:** Representam a lógica de negócios central do sistema. Cada serviço é independente e responsável por uma funcionalidade específica, seguindo os princípios SOA de reusabilidade e autonomia. A comunicação bidirecional com a camada de dados permite que os serviços persistam e recuperem informações necessárias para suas operações. A comunicação bidirecional com os serviços externos indica o consumo de funcionalidades especializadas fornecidas por terceiros.
 
-As setas no diagrama de componentes representam a **direção do fluxo de comunicação e/ou dados** entre os diferentes componentes do sistema:
+* **Camada de Dados:** Fornece a persistência dos dados do sistema. A separação em dois bancos de dados permite otimizar o armazenamento e o acesso a diferentes tipos de informações (dados de voos e reservas e dados de usuários). A comunicação bidirecional com os serviços internos permite que estes leiam e escrevam dados conforme necessário.
 
-* **Setas Simples:** Indicam um fluxo de dados ou uma chamada de serviço em uma única direção. Por exemplo, a "Interface do Cliente" envia uma solicitação de pesquisa para o "Serviço de Pesquisa de Voos".
-* **Pares de setas simples com direções opostas** Indicam um fluxo de comunicação ou dados em ambas as direções, sugerindo uma interação de solicitação e resposta. Por exemplo, a "Interface do Cliente" envia uma solicitação ao "Serviço de Autenticação" e recebe um status de autenticação.
+* **Serviços Externos:** São integrados para delegar responsabilidades específicas a sistemas especializados, como geolocalização, processamento de pagamentos e envio de notificações. Isso reduz a complexidade do sistema interno e aproveita a expertise de terceiros, focando o desenvolvimento interno na lógica de negócios principal da companhia aérea. A comunicação bidirecional dos serviços internos para os serviços externos representa o consumo dessas APIs.
 
 ## RNF (Requisito não funcional)
 
