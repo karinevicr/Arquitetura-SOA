@@ -50,3 +50,5 @@ As setas no diagrama de componentes representam a **direção do fluxo de comuni
 * **Dupla de setas simples com direções opostas** Indicam um fluxo de comunicação ou dados em ambas as direções, sugerindo uma interação de solicitação e resposta. Por exemplo, a "Interface do Cliente" envia uma solicitação ao "Serviço de Autenticação" e recebe um status de autenticação.
 
 Esta documentação fornece uma visão geral da arquitetura SOA proposta para o sistema de reservas de voos e explica o papel de cada serviço e o significado das interações entre eles.
+
+## RNF (Requisitos não funcionais)
