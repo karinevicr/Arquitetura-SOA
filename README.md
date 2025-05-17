@@ -43,11 +43,11 @@
 As setas no diagrama de componentes representam a **direção do fluxo de comunicação e/ou dados** entre os diferentes componentes do sistema:
 
 * **Setas Simples:** Indicam um fluxo de dados ou uma chamada de serviço em uma única direção. Por exemplo, a "Interface do Cliente" envia uma solicitação de pesquisa para o "Serviço de Pesquisa de Voos".
-* **Dupla de setas simples com direções opostas** Indicam um fluxo de comunicação ou dados em ambas as direções, sugerindo uma interação de solicitação e resposta. Por exemplo, a "Interface do Cliente" envia uma solicitação ao "Serviço de Autenticação" e recebe um status de autenticação.
+* **Pares de setas simples com direções opostas** Indicam um fluxo de comunicação ou dados em ambas as direções, sugerindo uma interação de solicitação e resposta. Por exemplo, a "Interface do Cliente" envia uma solicitação ao "Serviço de Autenticação" e recebe um status de autenticação.
 
 ## RNF (Requisito não funcional)
 
-Para acessar os RNFs do prjeto é necessario acessar o arquivo [RNF.md](RNF.md)
+Para acessar os RNFs do projeto é necessario acessar o arquivo [RNF.md](RNF.md)
 
 ## Simulação de site de reserva de voos
 
