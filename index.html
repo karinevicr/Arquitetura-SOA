@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirSearch - Busca de Voos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AirSearch</h1>
+            <p>Encontre os melhores voos para o seu destino</p>
+        </header>
+
+        <section class="search-form">
+            <h2>Pesquisar Voos</h2>
+            <form id="flight-search">
+                <div class="form-group">
+                    <label for="origem">Origem:</label>
+                    <input type="text" id="origem" value="São Paulo, SP (GRU)" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="destino">Destino:</label>
+                    <select id="destino" required>
+                        <option value="">Selecione um destino</option>
+                        <option value="Rio de Janeiro, RJ (GIG)">Rio de Janeiro, RJ (GIG)</option>
+                        <option value="Belo Horizonte, MG (CNF)">Belo Horizonte, MG (CNF)</option>
+                        <option value="Salvador, BA (SSA)">Salvador, BA (SSA)</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data-ida">Data de Ida:</label>
+                        <input type="date" id="data-ida" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data-volta">Data de Volta (opcional):</label>
+                        <input type="date" id="data-volta">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="passageiros">Passageiros:</label>
+                        <select id="passageiros" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="classe">Classe:</label>
+                        <select id="classe" required>
+                            <option value="Econômica">Econômica</option>
+                            <option value="Executiva">Executiva</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-search">Pesquisar Voos</button>
+            </form>
+        </section>
+
+        <section id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Buscando voos disponíveis...</p>
+        </section>
+
+        <section id="results" class="results hidden">
+            <h2>Voos Disponíveis</h2>
+            <div id="flights-container"></div>
+        </section>
+        
+        <section id="no-results" class="no-results hidden">
+            <h2>Nenhum voo encontrado</h2>
+            <p>Tente alterar os critérios de busca.</p>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
